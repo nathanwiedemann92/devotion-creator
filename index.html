@@ -1,0 +1,197 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#711a20"><meta name="description" content="Create beautiful, exact-text Christian devotional graphics."><link rel="manifest" href="manifest.webmanifest"><title>Devotion Creator</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Cormorant+Garamond:wght@400;700&family=EB+Garamond:wght@400;700&family=Cinzel:wght@400;700&family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&family=Merriweather:wght@400;700&family=Crimson+Text:wght@400;700&family=Spectral:wght@400;700&family=Alegreya:wght@400;700&family=DM+Serif+Display:wght@400;700&family=Bodoni+Moda:wght@400;700&family=Montserrat:wght@400;700&family=Inter:wght@400;700&family=Oswald:wght@400;700&family=Raleway:wght@400;700&family=Nunito:wght@400;700&family=Roboto+Slab:wght@400;700&family=Source+Sans+3:wght@400;700&family=Caveat:wght@400;700&family=Great+Vibes:wght@400;700&family=Dancing+Script:wght@400;700&family=Pacifico:wght@400;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet"><style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#302b27;background:#f4efe7}*{box-sizing:border-box}body{margin:0}.top{background:#711a20;color:white;padding:22px 20px}.top div{max-width:1100px;margin:auto}.top h1{margin:0;font-family:Georgia,serif;font-size:32px}.top p{margin:5px 0 0;color:#f2dedb}.layout{max-width:1100px;margin:22px auto;padding:0 16px;display:grid;grid-template-columns:minmax(300px,440px) minmax(300px,1fr);gap:22px}.panel{background:#fff;border:1px solid #e3d9cb;border-radius:14px;padding:20px;box-shadow:0 4px 18px #33220b0d}h2{font-size:20px;margin:0 0 15px}label{display:block;font-weight:700;margin:15px 0 6px}input,textarea,select{font:inherit;width:100%;border:1px solid #cbbfb2;border-radius:8px;padding:11px;background:#fffdfa;color:#302b27}textarea{resize:vertical;min-height:100px}#scripture,#commentary{min-height:160px}input:focus,textarea:focus,select:focus{outline:2px solid #9a5655;outline-offset:1px}.hint{font-size:12px;color:#6e655c;margin-top:5px}.buttons{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}button{font:inherit;border:0;border-radius:9px;padding:11px 15px;cursor:pointer;font-weight:700;background:#711a20;color:white}button.secondary{background:#e9e0d4;color:#3c3029}button:disabled{opacity:.5;cursor:not-allowed}.preview{position:sticky;top:16px;align-self:start}.preview img{display:block;width:100%;max-width:490px;margin:0 auto;border:1px solid #e4d8c8;box-shadow:0 4px 18px #0002}.status{min-height:22px;font-size:13px;color:#645b52;margin-top:12px}.settings{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px}.settings label{margin:0;font-weight:500}.settings input[type=number]{width:80px}.option{display:flex;align-items:center;gap:10px;margin-top:17px;padding:12px;border:1px solid #e3d9cb;border-radius:10px;background:#faf5ed}.option input{width:20px;height:20px;accent-color:#711a20}.option label{margin:0;font-weight:700}.option .hint{margin:2px 0 0}.foot{text-align:center;color:#6e655c;font-size:12px;padding:20px}@media(max-width:760px){.layout{grid-template-columns:1fr}.preview{position:static}.top h1{font-size:27px}}
+.custom-title{margin:26px 0 6px;padding-top:14px;border-top:1px solid #e8ded2}.control-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 12px}.control-grid input,.control-grid select{min-width:0}.control-grid input[type=color]{height:46px;padding:3px}.color-pair{display:flex;gap:8px;align-items:center}.color-pair input[type=color]{width:56px;flex:none}.color-pair input[type=text]{min-width:0;flex:1;font-family:ui-monospace,monospace;text-transform:uppercase}.control-grid input[type=range]{padding:4px 0}.control-grid input[type=file]{font-size:12px;padding:8px}.control-grid label{font-size:13px}.option{margin-bottom:10px}@media(max-width:440px){.control-grid{grid-template-columns:1fr}}.rich-toolbar{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:7px 0 15px}.rich-toolbar button{background:#efe6df;color:#621b26;border:1px solid #c7b7ad;padding:7px 11px;min-width:40px;border-radius:7px;font-size:17px}.rich-toolbar small{font-size:11px;color:#62544c;flex-basis:100%}.rich-toolbar button:focus-visible{outline:2px solid #711a20}.share-fields{margin:14px 0;padding:12px;border:1px solid #e0d6cc;border-radius:9px;background:#fffaf3}.share-fields .buttons{margin-top:9px}.share-fields .hint{margin:7px 0;font-size:12px}</style></head><body><header class="top"><div><h1>✝ Devotion Creator</h1><p>Your customizable devotional image studio · v15</p></div></header><main class="layout"><section class="panel"><label for="templateMode">Image template</label><select id="templateMode"><option value="devotion">Devotion</option><option value="prayer">Prayer Post</option></select>
+<div id="prayerFields" style="display:none">
+<h2 class="custom-title">Prayer Post</h2><p class="hint">Fixed cream-and-maroon design. Only the date and prayer change.</p>
+<label for="prayerDate">Date</label><input id="prayerDate" type="date">
+<label for="prayerText">Prayer text</label><textarea id="prayerText" rows="6" placeholder="Enter the daily prayer exactly as written."></textarea>
+</div><div id="devotionFields"><h2>Today's devotion</h2><label for="title">1. Devotion title</label><textarea id="title" rows="2" placeholder="I choose to give to this last worker as I give to you."></textarea><div class="rich-toolbar" aria-label="Text formatting"><button type="button" data-style="bold" title="Bold"><b>B</b></button><button type="button" data-style="italic" title="Italic"><i>I</i></button><button type="button" data-style="underline" title="Underline"><u>U</u></button><button type="button" data-style="strike" title="Strikethrough"><s>S</s></button><small>Select text, then tap a format button.</small></div><label for="scripture">2. Biblical text</label><textarea id="scripture" placeholder="Paste the complete Bible passage, including verse numbers."></textarea><div class="rich-toolbar" aria-label="Text formatting"><button type="button" data-style="bold" title="Bold"><b>B</b></button><button type="button" data-style="italic" title="Italic"><i>I</i></button><button type="button" data-style="underline" title="Underline"><u>U</u></button><button type="button" data-style="strike" title="Strikethrough"><s>S</s></button><small>Select text, then tap a format button.</small></div><label for="commentary">3. Commentary and attribution</label><textarea id="commentary" placeholder="Paste the commentary exactly as written. Add the author's name on the last line, e.g. — Valerius Herberger"></textarea><div class="rich-toolbar" aria-label="Text formatting"><button type="button" data-style="bold" title="Bold"><b>B</b></button><button type="button" data-style="italic" title="Italic"><i>I</i></button><button type="button" data-style="underline" title="Underline"><u>U</u></button><button type="button" data-style="strike" title="Strikethrough"><s>S</s></button><small>Select text, then tap a format button.</small></div><label for="reference">4. Bible reference</label><input id="reference" placeholder="Matthew 20:1–16"><div class="share-fields"><label for="scriptureUrl">5. Scripture reading URL (optional)</label><input id="scriptureUrl" type="url" inputmode="url" placeholder="https://www.biblegateway.com/passage/?search=Matthew%2021%3A16-25"><p class="hint">This link will be included in the text message alongside your devotion image. The PNG stays clean. In texts, the link is shared as a separate message caption; the messaging app decides whether it appears above or below the image. For Snapchat, attach the copied URL using Snapchat’s link tool.</p><div class="buttons"><button id="copyShare" type="button" class="secondary">Copy Scripture Message</button><button id="shareDevotion" type="button">Share by Text</button><button id="shareSnapchat" type="button" class="secondary">Share to Snapchat</button></div></div><h2 class="custom-title">Customize appearance</h2>
+<div class="control-grid"><div><label for="headerColor">Header & footer color</label><div class="color-pair"><input type="color" id="headerColor" value="#711a20" aria-label="Choose header and footer color"><input type="text" id="headerHex" value="#711A20" maxlength="7" spellcheck="false" aria-label="Header and footer HEX code" placeholder="#711A20"></div><div class="hint">Both bands always match.</div></div><div><label for="backgroundColor">Background color</label><div class="color-pair"><input type="color" id="backgroundColor" value="#fff9ed"><input type="text" id="backgroundHex" value="#FFF9ED" maxlength="7" spellcheck="false" placeholder="#FFF9ED"></div></div><div><label for="textColor">Text color</label><div class="color-pair"><input type="color" id="textColor" value="#171513"><input type="text" id="textHex" value="#171513" maxlength="7" spellcheck="false" placeholder="#171513"></div></div></div>
+<div class="control-grid"><div><label for="titleFont">Title font</label><select id="titleFont"><option value="Georgia">Georgia (system fallback)</option><option value="Libre Baskerville">Libre Baskerville</option><option value="Cormorant Garamond">Cormorant Garamond</option><option value="EB Garamond">EB Garamond</option><option value="Cinzel">Cinzel</option><option value="Playfair Display">Playfair Display</option><option value="Lora">Lora</option><option value="Merriweather">Merriweather</option><option value="Crimson Text">Crimson Text</option><option value="Spectral">Spectral</option><option value="Alegreya">Alegreya</option><option value="DM Serif Display">DM Serif Display</option><option value="Bodoni Moda">Bodoni Moda</option><option value="Montserrat">Montserrat</option><option value="Inter">Inter</option><option value="Oswald">Oswald</option><option value="Raleway">Raleway</option><option value="Nunito">Nunito</option><option value="Roboto Slab">Roboto Slab</option><option value="Source Sans 3">Source Sans 3</option><option value="Caveat">Caveat</option><option value="Great Vibes">Great Vibes</option><option value="Dancing Script">Dancing Script</option><option value="Pacifico">Pacifico</option><option value="Courier Prime">Courier Prime</option></select></div><div><label for="bodyFont">Body font</label><select id="bodyFont"><option value="Georgia">Georgia (system fallback)</option><option value="Libre Baskerville">Libre Baskerville</option><option value="Cormorant Garamond">Cormorant Garamond</option><option value="EB Garamond">EB Garamond</option><option value="Cinzel">Cinzel</option><option value="Playfair Display">Playfair Display</option><option value="Lora">Lora</option><option value="Merriweather">Merriweather</option><option value="Crimson Text">Crimson Text</option><option value="Spectral">Spectral</option><option value="Alegreya">Alegreya</option><option value="DM Serif Display">DM Serif Display</option><option value="Bodoni Moda">Bodoni Moda</option><option value="Montserrat">Montserrat</option><option value="Inter">Inter</option><option value="Oswald">Oswald</option><option value="Raleway">Raleway</option><option value="Nunito">Nunito</option><option value="Roboto Slab">Roboto Slab</option><option value="Source Sans 3">Source Sans 3</option><option value="Caveat">Caveat</option><option value="Great Vibes">Great Vibes</option><option value="Dancing Script">Dancing Script</option><option value="Pacifico">Pacifico</option><option value="Courier Prime">Courier Prime</option></select></div><div><label for="titleSize">Title text size (px)</label><input type="number" id="titleSize" min="22" max="110" value="55"></div><div><label for="fontsize">Scripture & commentary size (px)</label><input type="number" id="fontsize" min="18" max="72" value="36"></div></div>
+<h2 class="custom-title">Watermark</h2><div class="option"><input type="checkbox" id="watermark"><div><label for="watermark">Show watermark</label><div class="hint">Choose VDMA or upload your own image. Watermark appears behind the text.</div></div></div>
+<div class="control-grid"><div><label for="watermarkType">Watermark source</label><select id="watermarkType"><option value="vdma">VDMA cross</option><option value="custom">Uploaded image</option></select></div><div><label for="opacity">Opacity: <output id="opacityValue">7</output>%</label><input type="range" id="opacity" min="0" max="100" value="7"></div><div><label for="watermarkScale">Size: <output id="scaleValue">85</output>%</label><input type="range" id="watermarkScale" min="15" max="150" value="85"></div><div><label for="watermarkImage">Upload watermark image</label><input type="file" id="watermarkImage" accept="image/png,image/jpeg,image/webp,image/svg+xml"><div class="hint">Stored on this device if browser storage allows.</div></div></div>
+<h2 class="custom-title">PNG dimensions</h2><div class="control-grid"><div><label for="preset">Image preset</label><select id="preset"><option value="portrait">Tall portrait (960 × 1720)</option><option value="story">Story (1080 × 1920)</option><option value="square">Square (1080 × 1080)</option><option value="print">Print (1200 × 1800)</option><option value="custom">Custom dimensions</option></select></div><div><label for="imageWidth">Width (px)</label><input type="number" id="imageWidth" min="400" max="4000" value="960"></div><div><label for="imageHeight">Minimum height (px)</label><input type="number" id="imageHeight" min="500" max="6000" value="1720"></div><div><label for="autoGrow">Fit long text</label><select id="autoGrow"><option value="yes">Auto-grow height to fit text</option><option value="no">Exact dimensions (shrink text to fit)</option></select></div></div>
+<div class="buttons"><button id="resetStyle" class="secondary" type="button">Reset style defaults</button></div></div><div class="buttons"><button id="render">Update preview</button><button id="download">Download PNG</button><button id="save" class="secondary">Save draft</button><button id="clear" class="secondary">Clear</button></div><div class="status" id="status" aria-live="polite"></div><p class="hint">Exact-text layout: the app does not use AI to rewrite Scripture or commentary. Auto-grow makes the image taller; Exact dimensions keeps the requested PNG height and reduces text size to fit. Your draft is stored only in this browser.</p></section><section class="panel preview"><h2>Image preview</h2><img id="preview" alt="Devotional image preview"><p class="hint">Fonts load from Google Fonts when online. Exact PNG dimensions require selecting Exact dimensions mode. Text is rendered directly from your entries.</p></section></main><footer class="foot">Devotion Creator · Designed for accurate, readable devotional images</footer><script>
+const fields=['title','scripture','commentary','reference','scriptureUrl'];
+const controls=['fontsize','watermark','headerColor','backgroundColor','textColor','titleFont','bodyFont','titleSize','watermarkType','opacity','watermarkScale','preset','imageWidth','imageHeight','autoGrow'];
+const el=id=>document.getElementById(id), key='devotion-creator-draft-v5', previousKey='devotion-creator-draft-v4';let canvas, customImage=null, customData='';
+const clamp=(v,lo,hi,def)=>Math.max(lo,Math.min(hi,Number(v)||def));
+const family=f=>`"${f.replace(/[^a-zA-Z0-9 ]/g,'')}",Georgia,serif`;
+function wrap(ctx,text,maxWidth){const lines=[];for(const para of String(text).replace(/\r/g,'').split('\n')){if(!para.trim()){lines.push('');continue;}let line='';for(const word of para.split(/\s+/)){const trial=line?line+' '+word:word;if(ctx.measureText(trial).width<=maxWidth){line=trial;continue;}if(line){lines.push(line);line='';}if(ctx.measureText(word).width<=maxWidth){line=word;continue;}let part='';for(const char of word){if(ctx.measureText(part+char).width>maxWidth&&part){lines.push(part);part='';}part+=char;}line=part;}lines.push(line);}return lines;}
+function vdma(ctx,w,y,h,scale,alpha){ctx.save();ctx.translate(w/2,y+h/2);const size=Math.min(w*.85,h*.67)*scale;ctx.globalAlpha=alpha;ctx.fillStyle='#000';ctx.strokeStyle='#000';ctx.lineCap='square';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font=`${Math.round(size*.34)}px Georgia,serif`;const a=size*.24;ctx.fillText('V',-a,-a*.8);ctx.fillText('D',a,-a*.8);ctx.fillText('M',-a,a*.83);ctx.fillText('A',a,a*.83);ctx.lineWidth=Math.max(4,size*.017);ctx.beginPath();ctx.moveTo(0,-size*.47);ctx.lineTo(0,size*.47);ctx.moveTo(-size*.47,0);ctx.lineTo(size*.47,0);ctx.stroke();ctx.restore();}
+
+function parseStyled(text){
+ const tokens=[],re=/(\*\*|__|~~|\*|\n)/g;
+ let state={bold:false,italic:false,underline:false,strike:false};
+ for(const part of String(text).split(re)){
+  if(part==='\n'){tokens.push({text:'\n',...state});continue;}
+  const prop={'**':'bold','*':'italic','__':'underline','~~':'strike'}[part];
+  if(prop){state={...state,[prop]:!state[prop]};continue;}
+  for(const word of part.split(/(\s+)/)){if(word)tokens.push({text:word,...state});}
+ }
+ return tokens;
+}
+function styledFont(t,size,familyName){return `${t.italic?'italic ':''}${t.bold?'bold ':''}${size}px ${familyName}`;}
+function measureStyled(ctx,t,size,familyName){ctx.font=styledFont(t,size,familyName);return ctx.measureText(t.text).width;}
+function wrapStyled(ctx,text,maxWidth,size,familyName){
+ const lines=[[]];let currentWidth=0;
+ for(const token of parseStyled(text)){
+  if(token.text==='\n'){lines.push([]);currentWidth=0;continue;}
+  const width=measureStyled(ctx,token,size,familyName);
+  if(currentWidth+width>maxWidth&&lines[lines.length-1].length&&!/^\s+$/.test(token.text)){
+   lines.push([]);currentWidth=0;
+  }
+  if(currentWidth===0&&/^\s+$/.test(token.text))continue;
+  lines[lines.length-1].push(token);currentWidth+=width;
+ }
+ return lines;
+}
+function drawStyledLines(ctx,lines,left,top,size,familyName,lineHeight){
+ for(let i=0;i<lines.length;i++){
+  let x=left,y=top+i*lineHeight;
+  for(const t of lines[i]){
+   ctx.font=styledFont(t,size,familyName);
+   const width=ctx.measureText(t.text).width;
+   ctx.fillText(t.text,x,y);
+   if(t.underline||t.strike){
+    ctx.save();ctx.strokeStyle=ctx.fillStyle;ctx.lineWidth=Math.max(1,size/23);
+    ctx.beginPath();
+    const ly=y+(t.strike?size*.52:size*1.05);
+    ctx.moveTo(x,ly);ctx.lineTo(x+width,ly);ctx.stroke();ctx.restore();
+   }
+   x+=width;
+  }
+ }
+}
+
+function draw(){if(el('templateMode').value==='prayer'){drawPrayer();return;}try{const width=clamp(el('imageWidth').value,400,4000,960),minHeight=clamp(el('imageHeight').value,500,6000,1720),ratio=width/960,pad=66*ratio,usable=width-2*pad;const title=el('title').value.trim()||'Your devotion title',scripture=el('scripture').value.trim()||'Your biblical text will appear here.',commentary=el('commentary').value.trim()||'Your commentary will appear here.',ref=el('reference').value.trim()||'Bible reference';const tfs=clamp(el('titleSize').value,22,110,55)*ratio,bodyFS=clamp(el('fontsize').value,18,72,36)*ratio;const headFont=family(el('titleFont').value),bodyFont=family(el('bodyFont').value);const probe=document.createElement('canvas').getContext('2d');const linesAt=(size)=>{probe.font=`${size}px ${bodyFont}`;return [wrapStyled(probe,scripture,usable,size,bodyFont),wrapStyled(probe,commentary,usable,size,bodyFont)];};probe.font=`bold ${tfs}px ${headFont}`;const titleLines=wrapStyled(probe,`**${title}**`,usable,tfs,headFont);const titleLH=tfs*1.16,headH=Math.max(145*ratio,titleLines.length*titleLH+52*ratio),footH=150*ratio;let fs=bodyFS,[bibleLines,commentLines]=linesAt(fs);const gap=65*ratio,topPad=72*ratio,bottomPad=70*ratio;const needed=()=>topPad+(bibleLines.length+commentLines.length)*fs*1.33+gap+bottomPad;let bodyH=Math.max(needed(),minHeight-headH-footH);if(el('autoGrow').value==='no'){bodyH=Math.max(1,minHeight-headH-footH);let lo=2*ratio,hi=bodyFS;for(let i=0;i<24;i++){const mid=(lo+hi)/2;fs=mid;[bibleLines,commentLines]=linesAt(fs);if(needed()<=bodyH)lo=mid;else hi=mid;}fs=lo;[bibleLines,commentLines]=linesAt(fs);}const height=el('autoGrow').value==='no'?minHeight:Math.ceil(headH+bodyH+footH);canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;const ctx=canvas.getContext('2d');ctx.fillStyle=el('backgroundColor').value;ctx.fillRect(0,0,width,height);ctx.fillStyle=el('headerColor').value;ctx.fillRect(0,0,width,headH);ctx.fillStyle=el('headerColor').value;ctx.fillRect(0,headH+bodyH,width,footH);const borderW=Math.max(3,Math.round(width*.009));ctx.fillRect(0,headH,borderW,bodyH);ctx.fillRect(width-borderW,headH,borderW,bodyH);
+if(el('watermark').checked){const alpha=clamp(el('opacity').value,0,100,7)/100,scale=clamp(el('watermarkScale').value,15,150,85)/85;if(el('watermarkType').value==='custom'&&customImage){ctx.save();ctx.globalAlpha=alpha;const maxW=width*.82*scale,maxH=bodyH*.75*scale,fac=Math.min(maxW/customImage.width,maxH/customImage.height);const iw=customImage.width*fac,ih=customImage.height*fac;ctx.drawImage(customImage,(width-iw)/2,headH+(bodyH-ih)/2,iw,ih);ctx.restore();}else if(el('watermarkType').value==='vdma'){vdma(ctx,width,headH,bodyH,scale,alpha);}}
+ctx.fillStyle='#fff';ctx.font=`bold ${tfs}px ${headFont}`;ctx.textAlign='left';ctx.textBaseline='middle';titleLines.forEach((line,i)=>{const lineW=line.reduce((w,t)=>w+measureStyled(ctx,{...t,bold:true},tfs,headFont),0);let xx=(width-lineW)/2;for(const t of line){const tt={...t,bold:true};ctx.font=styledFont(tt,tfs,headFont);const tw=ctx.measureText(t.text).width;ctx.fillText(t.text,xx,headH/2+(i-(titleLines.length-1)/2)*titleLH);xx+=tw;}});ctx.fillStyle=el('textColor').value;ctx.font=`${fs}px ${bodyFont}`;ctx.textAlign='left';ctx.textBaseline='top';let y=headH+topPad;drawStyledLines(ctx,bibleLines,pad,y,fs,bodyFont,fs*1.33);y+=bibleLines.length*fs*1.33+gap;drawStyledLines(ctx,commentLines,pad,y,fs,bodyFont,fs*1.33);ctx.fillStyle='#fff';let footerSize=58*ratio;do{ctx.font=`bold ${footerSize}px ${headFont}`;footerSize-=2*ratio;}while(ctx.measureText(ref).width>usable&&footerSize>20*ratio);ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(ref,width/2,headH+bodyH+footH/2);el('preview').src=canvas.toDataURL('image/png');el('status').textContent=`Preview ready · ${width} × ${height} px · ${el('autoGrow').value==='no'?'Exact dimensions':'Auto-grow'} · ${el('bodyFont').value}`;}catch(e){el('status').textContent='Preview error: '+e.message;}}
+
+const prayerBackground=new Image();let prayerBackgroundReady=false;
+prayerBackground.onload=()=>{prayerBackgroundReady=true;if(el('templateMode').value==='prayer')drawPrayer();};
+prayerBackground.src='./prayer-background.jpg';
+function drawPrayer(){
+ const w=1254,h=1254,c=document.createElement('canvas');c.width=w;c.height=h;
+ const x=c.getContext('2d');
+ if(prayerBackgroundReady)x.drawImage(prayerBackground,0,0,w,h);
+ else{x.fillStyle='#f6e8cf';x.fillRect(0,0,w,h);}
+ const maroon='#70000d',gold='#e4aa17';
+ // Date plaque: no lines extending outward.
+ const bx=125,by=436,bw=1004,bh=146;
+ x.fillStyle=gold;x.beginPath();x.roundRect(bx,by,bw,bh,45);x.fill();
+ x.fillStyle='#fff6dd';x.beginPath();x.roundRect(bx+5,by+5,bw-10,bh-10,41);x.fill();
+ x.fillStyle=maroon;x.beginPath();x.roundRect(bx+11,by+11,bw-22,bh-22,37);x.fill();
+ const rawDate=el('prayerDate').value;let dateLabel='Select a date';
+ if(rawDate){const [yy,mm,dd]=rawDate.split('-').map(Number);dateLabel=new Date(yy,mm-1,dd).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});}
+ x.fillStyle='#fff4d7';x.textAlign='center';x.textBaseline='middle';
+ let ds=104;do{x.font=`bold ${ds}px Georgia,serif`;if(x.measureText(dateLabel).width<910)break;ds-=2;}while(ds>28);
+ x.fillText(dateLabel,w/2,508);
+ const content=el('prayerText').value.trim()||'Enter today’s prayer text.';
+ const maxWidth=1110;let fs=84,lines=[];
+ do{x.font=`italic ${fs}px Georgia,serif`;lines=wrap(x,content,maxWidth);if(lines.length*fs*1.15<=550)break;fs-=2;}while(fs>=20);
+ x.fillStyle='#100c0b';x.font=`italic ${fs}px Georgia,serif`;x.textBaseline='top';
+ const lh=fs*1.15;let y=615+Math.max(0,(550-lines.length*lh)/2);
+ for(const line of lines){x.fillText(line,w/2,y);y+=lh;}
+ canvas=c;el('preview').src=c.toDataURL('image/png');el('status').textContent='Prayer Post · 1254 × 1254 px · Clean background';
+}
+function data(){return Object.fromEntries([...fields,...controls].map(id=>[id,el(id).type==='checkbox'?el(id).checked:el(id).value]));}
+function save(){try{localStorage.setItem('prayer-post-v1',JSON.stringify({date:el('prayerDate').value,text:el('prayerText').value,mode:el('templateMode').value}));localStorage.setItem(key,JSON.stringify({...data(),customData}));el('status').textContent='Draft and settings saved on this device.';}catch(e){el('status').textContent='Browser storage full. Try a smaller watermark image.';}}
+function load(){try{const prayer=JSON.parse(localStorage.getItem('prayer-post-v1')||'{}');el('prayerDate').value=prayer.date||new Date().toLocaleDateString('en-CA');el('prayerText').value=prayer.text||'';el('templateMode').value=prayer.mode||'devotion';const d=JSON.parse(localStorage.getItem(key)||localStorage.getItem(previousKey)||'{}');for(const id of [...fields,...controls])if(d[id]!=null)el(id).type==='checkbox'?el(id).checked=!!d[id]:el(id).value=d[id];if(d.customData)loadImage(d.customData);}catch(e){}}
+function loadImage(data){const im=new Image();im.onload=()=>{customImage=im;customData=data;draw();};im.onerror=()=>el('status').textContent='Could not read that watermark image.';im.src=data;}
+el('watermarkImage').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;if(f.size>5*1024*1024){el('status').textContent='Choose an image under 5 MB.';return;}const reader=new FileReader();reader.onload=()=>{el('watermark').checked=true;el('watermarkType').value='custom';loadImage(reader.result);};reader.readAsDataURL(f);});
+const presets={portrait:[960,1720],story:[1080,1920],square:[1080,1080],print:[1200,1800]};el('preset').addEventListener('change',()=>{const p=presets[el('preset').value];if(p){el('imageWidth').value=p[0];el('imageHeight').value=p[1];}draw();});for(const id of ['imageWidth','imageHeight'])el(id).addEventListener('change',()=>{el('preset').value='custom';});
+function showSliders(){el('opacityValue').textContent=el('opacity').value;el('scaleValue').textContent=el('watermarkScale').value;}
+const colorPairs=[['headerColor','headerHex'],['backgroundColor','backgroundHex'],['textColor','textHex']];
+function syncHexFields(){for(const [picker,hex] of colorPairs)el(hex).value=el(picker).value.toUpperCase();}
+for(const [picker,hex] of colorPairs){
+ el(picker).addEventListener('input',()=>{el(hex).value=el(picker).value.toUpperCase();});
+ el(hex).addEventListener('input',()=>{let value=el(hex).value.trim();if(!value.startsWith('#'))value='#'+value;if(/^#[0-9a-fA-F]{6}$/.test(value)){el(picker).value=value.toLowerCase();draw();}});
+ el(hex).addEventListener('blur',()=>{const value=el(hex).value.trim();if(!/^#[0-9a-fA-F]{6}$/.test(value))el(hex).value=el(picker).value.toUpperCase();});
+}
+async function redrawWithFonts(){const t=el('titleFont').value,b=el('bodyFont').value;try{await Promise.all([document.fonts.load('700 24px '+family(t)),document.fonts.load('400 24px '+family(b))]);}catch(e){}draw();}
+function switchTemplate(){const prayer=el('templateMode').value==='prayer';el('prayerFields').style.display=prayer?'block':'none';el('devotionFields').style.display=prayer?'none':'block';draw();}
+el('templateMode').addEventListener('change',switchTemplate);
+for(const id of ['prayerDate','prayerText'])el(id).addEventListener('input',draw);
+document.querySelectorAll('.rich-toolbar').forEach(toolbar=>{
+ const field=toolbar.previousElementSibling;
+ toolbar.querySelectorAll('button[data-style]').forEach(button=>{
+  button.addEventListener('pointerdown',event=>event.preventDefault());
+  button.addEventListener('click',()=>{
+   const start=field.selectionStart,end=field.selectionEnd;
+   if(start===end){el('status').textContent='Select text in the field first.';field.focus();return;}
+   const marker={bold:'**',italic:'*',underline:'__',strike:'~~'}[button.dataset.style];
+   const old=field.value;
+   field.value=old.slice(0,start)+marker+old.slice(start,end)+marker+old.slice(end);
+   field.focus();field.setSelectionRange(start+marker.length,end+marker.length);
+   redrawWithFonts();
+  });
+ });
+});
+function getScriptureMessage(){
+ const ref=el('reference').value.trim()||'Today’s Bible reading';
+ const url=el('scriptureUrl').value.trim();
+ if(url){try{const parsed=new URL(url);if(!['https:','http:'].includes(parsed.protocol))throw Error('invalid');}catch(e){el('status').textContent='Please enter a complete http:// or https:// Scripture URL.';return null;}}
+ return `Today's Devotion\n\nRead ${ref}${url?':\n'+url:''}`;
+}
+async function copyScriptureMessage(){
+ const message=getScriptureMessage();if(!message)return;
+ try{await navigator.clipboard.writeText(message);el('status').textContent='Scripture message copied. Paste it alongside the PNG in your text message.';}
+ catch(e){const box=document.createElement('textarea');box.value=message;box.style.position='fixed';box.style.top='0';document.body.appendChild(box);box.select();const copied=document.execCommand('copy');box.remove();el('status').textContent=copied?'Message copied. Paste it in your text message.':'Copy unavailable in this browser. Select the URL field and copy it manually.';}
+}
+async function prepareDevotionFile(){
+ await redrawWithFonts();
+ const name='devotion-'+(el('reference').value.trim()||'image').replace(/[^a-z0-9-]+/gi,'-').toLowerCase()+'.png';
+ const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));
+ if(!blob)throw new Error('PNG generation failed');
+ return new File([blob],name,{type:'image/png'});
+}
+function downloadDevotionFile(file){
+ const url=URL.createObjectURL(file),link=document.createElement('a');
+ link.href=url;link.download=file.name;document.body.appendChild(link);link.click();link.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),15000);
+}
+async function copyPlainText(value){
+ try{await navigator.clipboard.writeText(value);return true;}
+ catch(e){
+  const input=document.createElement('textarea');input.value=value;input.style.position='fixed';input.style.opacity='0';document.body.appendChild(input);input.focus();input.select();
+  let ok=false;try{ok=document.execCommand('copy');}catch(e){}input.remove();return ok;
+ }
+}
+async function shareDevotion(){
+ if(el('templateMode').value!=='devotion')return;
+ const message=getScriptureMessage();if(!message)return;
+ try{
+  const file=await prepareDevotionFile();
+  if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){
+   await navigator.share({files:[file],text:message});
+   el('status').textContent='Check the text message before sending: some apps put the link above the image or omit the caption. If omitted, use Copy Scripture Message.';
+   return;
+  }
+  const copied=await copyPlainText(message);
+  downloadDevotionFile(file);
+  el('status').textContent=copied?'Image downloaded and Scripture message copied. Attach the PNG, then paste the link below it.':'Image downloaded. Copy the Scripture message separately and paste it below the image.';
+ }catch(e){el('status').textContent=e.name==='AbortError'?'Sharing canceled.':'Could not share the image. Use Download PNG and Copy Scripture Message.';}
+}
+async function shareSnapchat(){
+ if(el('templateMode').value!=='devotion')return;
+ const url=el('scriptureUrl').value.trim();
+ if(!url){el('status').textContent='Add a Scripture URL before sharing to Snapchat.';el('scriptureUrl').focus();return;}
+ if(!getScriptureMessage())return;
+ // Clipboard is intentionally prepared before the share sheet opens.
+ const copied=await copyPlainText(url);
+ try{
+  const file=await prepareDevotionFile();
+  if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){
+   await navigator.share({files:[file]});
+   el('status').textContent=copied?'In Snapchat, use the link attachment tool and paste the copied Scripture URL.':'In Snapchat, use the link attachment tool and enter your Scripture URL manually.';
+   return;
+  }
+  downloadDevotionFile(file);
+  el('status').textContent=copied?'Image downloaded and Scripture URL copied. Open Snapchat, select the saved image, and attach the link.':'Image downloaded. Open Snapchat, select the image, and enter the Scripture URL using its link tool.';
+ }catch(e){el('status').textContent=e.name==='AbortError'?'Sharing canceled. The Scripture URL remains copied if clipboard access succeeded.':'Could not share. Download PNG, then add the link manually in Snapchat.';}
+}
+el('copyShare').addEventListener('click',copyScriptureMessage);
+el('shareDevotion').addEventListener('click',shareDevotion);el('shareSnapchat').addEventListener('click',shareSnapchat);
+el('render').onclick=redrawWithFonts;el('save').onclick=save;el('clear').onclick=()=>{if(el('templateMode').value==='prayer'){if(confirm('Clear prayer text?')){el('prayerText').value='';draw();}return;}if(!confirm('Clear all four devotion fields?'))return;for(const id of fields)el(id).value='';draw();};el('resetStyle').onclick=()=>{if(!confirm('Reset design settings to defaults?'))return;const defaults={fontsize:36,watermark:false,headerColor:'#711a20',backgroundColor:'#fff9ed',textColor:'#171513',titleFont:'Georgia',bodyFont:'Georgia',titleSize:55,watermarkType:'vdma',opacity:7,watermarkScale:85,preset:'portrait',imageWidth:960,imageHeight:1720,autoGrow:'yes'};for(const [id,v] of Object.entries(defaults))el(id).type==='checkbox'?el(id).checked=v:el(id).value=v;showSliders();syncHexFields();draw();};el('download').onclick=async()=>{if(el('templateMode').value==='prayer')drawPrayer();else await redrawWithFonts();if(!canvas)return;const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download=el('templateMode').value==='prayer'?'prayer-post-'+(el('prayerDate').value||'undated')+'.png':'devotion-'+(el('reference').value.trim()||'image').replace(/[^a-z0-9-]+/gi,'-').toLowerCase()+'.png';a.click();};for(const id of [...fields,...controls])el(id).addEventListener('input',()=>{showSliders();clearTimeout(window._drawTimeout);window._drawTimeout=setTimeout(redrawWithFonts,250);});load();syncHexFields();showSliders();switchTemplate();if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script></body></html>
